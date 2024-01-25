@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, catchError } from 'rxjs';
 import { Employee } from './employee';
 
 @Injectable({
@@ -16,5 +16,15 @@ export class EmployeeService {
   CreateEmployee(employee:Employee):Observable<Object>{
     return this.httpClient.post(`${this.baseURL}`, employee);
   }
+  getEmployeeById(id:number): Observable<any>{
+    return this.httpClient.get<Employee>(`${this.baseURL}/${id}`)
+  }
+  updateEmployee(id: number,employee:Employee): Observable<object> {
+    console.log('Update Request Data:', employee)
+    return this.httpClient.put(`${this.baseURL}/${id}`, employee);
+  }
+  DeleteEmployee(id: number): Observable<object>{
+    return this.httpClient.delete(`${this.baseURL}/${id}`)
+  }
 }
-
+  
