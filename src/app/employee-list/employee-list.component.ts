@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
   styleUrl: './employee-list.component.css'
 })
 export class EmployeeListComponent implements OnInit {
+
   deleteEmployee(id: number | undefined): void {
     // Check if id is defined before making the API call
     if (id !== undefined) {
@@ -55,4 +56,8 @@ export class EmployeeListComponent implements OnInit {
       this.router.navigate(['update-employee', id]);
     }
   }
+  employeeDetails(id: number|undefined) {
+    this.router.navigate(['employee-details', id]);
+
+    }
 }
